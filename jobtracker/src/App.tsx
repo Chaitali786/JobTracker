@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import JobTrackerForm from "./components/JobTrackerForm";
 import type { Job } from "./type/job";
 import "./App.css";
+import { List, ListItem, ListItemText, Paper} from "@mui/material";
 
 function App() {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -33,6 +34,19 @@ function App() {
       <div style={{ marginTop: "20px", textAlign: "center" }}>
         <h2>Total Jobs Applied: {jobs.length}</h2>
       </div>
+          <Paper sx={{ mt: 3, p: 2 }}>
+      <List>
+       
+        {jobs && jobs.map((job) => (
+          <ListItem key={job.id} divider>
+            <ListItemText 
+              primary={job.role} 
+              secondary={`${job.employer} | ${job.location} | ${job.date}`} 
+            />
+          </ListItem>
+        ))}
+      </List>
+    </Paper>
     </>
   );
 }
